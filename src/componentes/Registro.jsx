@@ -12,8 +12,6 @@ const Registro = () => {
     
     const dispatch = useDispatch();
     const paisesEncontrados = useSelector(state => state.paises.paisesLista);
-
-    //const [paises, setPaises] = useState(useSelector(state => state.paises.paisesLista));
     
     useEffect(() => {
         fetch("https://calcount.develotion.com/paises.php")

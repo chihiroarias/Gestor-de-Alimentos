@@ -1,20 +1,67 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import {guardarAlimentos} from "../features/alimentosSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { current } from '@reduxjs/toolkit';
 
 let url ="https://calcount.develotion.com/";
 
+let token = localStorage.getItem("TokenLogueado");
+let id = localStorage.getItem("IDLogueado");
+
 const AgregarRegistro = () => {
+
+  const cantCalorias = useRef(null);
+  const fcha = useRef(null);
+  const slcAlimentos = useRef(null);
+
+  const dispatch = useDispatch();
+  const alimentos = useSelector(state => state.alimentos.listAlimentos)
+
+  useEffect(() => {
+    fetch(url + '/alimentos.php',{
+      method:'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+        "apikey": token,
+        "iduser": id
+      }
+    })
+    .then(r=>r.json())
+    .then(datos=>{
+      console.log(datos);
+      dispatch(guardarAlimentos(datos.alimentos));
+    })
+  }, []);
+
+  const Registrar = () =>{
+    const alimento = slcAlimentos.current.value;
+    const canitdad = cantCalorias.current.value;
+    const fecha = fcha.current.value;
+
+    let cantidadTotal = alimentos.find(a=> a.id ===alimento);
+    console.log(cantidadTotal);
+    
+
+    //let convert = cantidad.replace(/[^0-9.]/g, '');
+    
   
-  const Registrar = () =>{}
+  }
+
+
   return (
 
    
     <div className="Agregar-Registro">
-      <select></select> 
+      <select ref={slcAlimentos}>
+        {alimentos.map(alimento => (
+          <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
+        )) }
+      </select> 
       <label htmlFor="Unidades">Cantidad de calorias</label>
-      <input type="number" id="Unidades"/>
+      <input type="number" id="Unidades" ref={cantCalorias}/>
 
       <label htmlFor="fcha">Fecha</label>
-      <input type="date" id="fcha"/> 
+      <input type="date" id="fcha" ref={fcha}/> 
 
       <input type="button" value="REGISTRAR" onClick={Registrar}/>
     </div> 
