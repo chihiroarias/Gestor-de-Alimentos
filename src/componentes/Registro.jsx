@@ -1,14 +1,24 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { guardarPaises } from '../features/paisesSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registro = () => {
+
+    const navigate = useNavigate();
+    useEffect(()=> {
+        if(localStorage.getItem("IDLogueado") === null){
+            navigate("/");
+        }
+    })
+
     const campoUser = useRef(null);
     const campoPass = useRef(null);
     const campoCalorias = useRef(null);
     const slcPais = useRef(null);
 
     const [mensaje, setMensaje] = useState('');
+
     
     const dispatch = useDispatch();
     const paisesEncontrados = useSelector(state => state.paises.paisesLista);
@@ -17,7 +27,6 @@ const Registro = () => {
         fetch("https://calcount.develotion.com/paises.php")
         .then(r => r.json())
         .then(datos => {
-            console.log(datos.paises)
             dispatch(guardarPaises(datos.paises))
             })
     }, [])
@@ -57,7 +66,7 @@ const Registro = () => {
                     localStorage.setItem('IDLogueado', responseData.id);
                     localStorage.setItem('TokenLogueado', responseData.apiKey);
                     localStorage.setItem('CaloriasDiariasLogueado', responseData.caloriasDiarias);
-                    setMensaje("Usuario agregado correctamente");
+                    navigate("/Dashboard");
                 })
                 .catch(error => {
                     console.log(error.message);
@@ -100,8 +109,7 @@ const Registro = () => {
                 <p>{mensaje}</p>
             </article>
 
-            <h3>¿Ya tienes una cuenta?</h3> 
-            <input type="button" value="LOGUEARSE" />
+            <Link to="/">¿Ya tienes una cuenta?</Link>
 
         </div>
     )

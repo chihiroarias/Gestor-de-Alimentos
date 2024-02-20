@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {guardarAlimentos} from "../features/alimentosSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { current } from '@reduxjs/toolkit';
@@ -10,9 +10,12 @@ let id = localStorage.getItem("IDLogueado");
 
 const AgregarRegistro = () => {
 
+  const [mensaje, setMensaje] = useState("");
   const cantCalorias = useRef(null);
   const fcha = useRef(null);
   const slcAlimentos = useRef(null);
+
+  
 
   const dispatch = useDispatch();
   const alimentos = useSelector(state => state.alimentos.listAlimentos)
@@ -35,18 +38,43 @@ const AgregarRegistro = () => {
 
   const Registrar = () =>{
     const alimento = slcAlimentos.current.value;
-    const canitdad = cantCalorias.current.value;
+    const cantidad = cantCalorias.current.value;
     const fecha = fcha.current.value;
+  // && fecha >= Date.now()
+    if(cantidad > 0){
+      let cantidadTotal = alimentos.find(a=> a.id ==alimento);
+      let convert = cantidadTotal.porcion.replace(/[^0-9.]/g, '');
+      
+      let iduser =localStorage.getItem("IDLogueado");
+      
+      fetch(url + '/registros.php',{
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          "apikey": token,
+          "iduser": id
+        },
+        body: JSON.stringify({
+          "idAlimento": alimento,
+          "idUsuario": iduser,
+          "cantidad": convert,
+          "fecha": fcha
+        })
+      })
+      .then(r=>r.json())
+      .then(datos=>{ 
+         alert(datos);
+        console.log(datos);
+      })
+      .catch(error => {
+        alert(error.message);
+        setMensaje("Credenciales no válidas");
+      });
 
-    let cantidadTotal = alimentos.find(a=> a.id ===alimento);
-    console.log(cantidadTotal);
-    
-
-    //let convert = cantidad.replace(/[^0-9.]/g, '');
-    
-  
+    }else{
+      setMensaje("Datos incorrectos");
+    }
   }
-
 
   return (
 
@@ -55,15 +83,19 @@ const AgregarRegistro = () => {
       <select ref={slcAlimentos}>
         {alimentos.map(alimento => (
           <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
-        )) }
+        ))}
       </select> 
       <label htmlFor="Unidades">Cantidad de calorias</label>
       <input type="number" id="Unidades" ref={cantCalorias}/>
 
       <label htmlFor="fcha">Fecha</label>
       <input type="date" id="fcha" ref={fcha}/> 
+      <p></p>
 
       <input type="button" value="REGISTRAR" onClick={Registrar}/>
+      <article>
+                <p>{mensaje}</p>
+      </article>
     </div> 
 
     
@@ -88,11 +120,3 @@ curl --location -g '{{calcount}}/registros.php' \
     "fecha": "2023-09-21"
 }'
 */
-
-
-/*
-    GET ALIMENTOS PARA EL SELECT
-curl --location -g '{{calcount}}/alimentos.php' \
---header 'Content-Type: application/json' \
---header 'apikey: a55b659120747f5404652ae17306275f' \
---header 'iduser: 7'*/

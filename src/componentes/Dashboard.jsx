@@ -4,15 +4,16 @@ import InformeCalorico from './InformeCalorico'
 import Listado from './Listado'
 import AgregarRegistro from './AgregarRegistro'
 import Analisis from './Analisis'
-import { Route } from 'react-router/cjs/react-router.min'
+import Cabezal from './Cabezal'
 const Dashboard = () => {
-
-    const Logout = () => { localStorage.clear(); }
 
     return (
         <>
-            <input type="button" value="LOGOUT" onClick={Logout} />
-            <AgregarRegistro />
+               <Cabezal/>
+               <AgregarRegistro />
+               <Listado />
+               <InformeCalorico />
+               <Analisis />
         </>
 
     )
@@ -20,29 +21,17 @@ const Dashboard = () => {
 
 export default Dashboard
 
-//import { NavLink, Outlet } from "react-router-dom"
-/*   <nav>
-                <NavLink to="/">Inicio</NavLink>
-                <NavLink to="/Analisis">Analisis</NavLink>
-                <NavLink to="/InformeCalorico">Informes Calóricos</NavLink>
-                <NavLink to="/Listado">Listados</NavLink>
-                <NavLink to="/AgregarRegistro">Agregar un Registro</NavLink>
-                </nav>
+/*
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NotFound from './NotFound';
+ <Routes>
+                    <Route path="/" element={<Cabezal/>}></Route>
+                        <Route path="/s" element={<AgregarRegistro />}/>
+                        <Route path="/Listado" element={   <Listado />}/>
+                        <Route path="/Informe" element={<InformeCalorico />}/>
+                        <Route path="/Analisis" element={<Analisis />}/>
+                        <Route path="*" element={<NotFound/>}/>
+                </Routes>
 
-            <Route path="/Analisis">
-                <Analisis />
-            </Route>
-            <Route path="/InformeCalorico">
-                <InformeCalorico />
-            </Route>
-            
-            <Route path="/Listado">
-                <Listado />
+*/
 
-            </Route>
-
-            <Route path="/AgregarRegistro">
-               
-
-            </Route>
-             */

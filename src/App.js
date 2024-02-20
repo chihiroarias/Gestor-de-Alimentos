@@ -4,27 +4,23 @@ import Login from './componentes/Login';
 import Dashboard from './componentes/Dashboard';
 import { Provider } from 'react-redux';
 import { store } from "./Store/store";
-import { Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NotFound from './componentes/NotFound';
 
 function App() {
   return (
     <Provider store={store}>
-
-      <hr/>
-        <Login />
-        <Dashboard />
-      <hr/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />}/>
+          <Route path="/Registro" element={<Registro />}/>
+          <Route path="/Dashboard" element={<Dashboard />}/>
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>   
      
     </Provider>
   );
 }
 
 export default App;
-//   <Registro />
-// 
-//     
-/*<Router>
-<Routes>
-<Route path="/" element={<Dashboard />}/> 
-</Routes>
-</Router>*/

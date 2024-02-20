@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const campoUser = useRef(null);
@@ -10,6 +11,8 @@ const Login = () => {
     //Esto es para deshabilitar el botón.
     const [usuarioCampoRastreo, setUsuario] = useState('');
     const [passwordCampoRastreo, setPassword] = useState('');
+    
+    const navigate = useNavigate();
 
     const rastrearUser = e => {
         setUsuario(e.target.value)
@@ -23,7 +26,8 @@ const Login = () => {
         const usuario = campoUser.current.value;
         const password = campoPass.current.value;
 
-        if (usuario != null && usuario != "" && password != null && password != "" ) {
+
+        if (usuario !== null && usuario !== "" && password !== null && password !== "" ) {
 
             const data = {
                 usuario,
@@ -48,13 +52,15 @@ const Login = () => {
                     localStorage.setItem('IDLogueado', responseData.id);
                     localStorage.setItem('TokenLogueado', responseData.apiKey);
                     localStorage.setItem('CaloriasDiariasLogueado', responseData.caloriasDiarias);
-                    //REDIRIGIR AL DASHBOARD
-                    setMensaje("Usuario logueado correctamente.");
+                    navigate("/Dashboard");
+
                 })
                 .catch(error => {
                     console.log(error.message);
                     setMensaje("Credenciales no válidas");
                 });
+
+
         } else {
             setMensaje("Complete los datos.");
         }
@@ -81,8 +87,7 @@ const Login = () => {
             </article>
             <br />
 
-            <h3>¿No estas registrado?</h3> 
-            <input type="button" value="REGISTRARME" />
+            <Link to="/Registro">¿No estas registrado?</Link>
 
         </div>
     )
