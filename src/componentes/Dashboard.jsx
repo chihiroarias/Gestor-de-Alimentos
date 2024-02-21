@@ -9,11 +9,11 @@ const Dashboard = () => {
 
     return (
         <>
-               <Cabezal/>
-               <AgregarRegistro />
-               <Listado />
-               <InformeCalorico />
-               <Analisis />
+            <Cabezal />
+            <hr />
+            <AgregarRegistro />
+            <hr />
+            <Listado />
         </>
 
     )

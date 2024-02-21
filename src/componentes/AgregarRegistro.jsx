@@ -45,7 +45,8 @@ const AgregarRegistro = () => {
       let cantidadTotal = alimentos.find(a=> a.id ==alimento);
       let convert = cantidadTotal.porcion.replace(/[^0-9.]/g, '');
       
-      let iduser =localStorage.getItem("IDLogueado");
+      let iduser =localStorage.getItem("IDLogueado")
+      console.log();
       
       fetch(url + '/registros.php',{
         method: 'POST', 
