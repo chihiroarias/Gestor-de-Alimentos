@@ -5,15 +5,32 @@ import Listado from './Listado'
 import AgregarRegistro from './AgregarRegistro'
 import Analisis from './Analisis'
 import Cabezal from './Cabezal'
+import Mapa from './Mapa'
 const Dashboard = () => {
 
     return (
         <>
-            <Cabezal />
-            <hr />
-            <AgregarRegistro />
-            <hr />
-            <Listado />
+            <div className='Contenedor'>
+                <div className='Container'>
+                    <Cabezal />
+                    <hr />
+
+                </div>
+                <div className='Container'>
+                    <AgregarRegistro />
+                    <hr />
+                </div>
+                <div className='Container'>
+                    <Listado />
+                    <hr/>
+                </div>
+                <div className='Container'>
+                    <Mapa/>
+                </div>
+                <div className='Container'>
+                    <InformeCalorico/>
+                </div>
+            </div>
         </>
 
     )

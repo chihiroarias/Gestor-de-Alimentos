@@ -7,7 +7,7 @@ const Registro = () => {
 
     const navigate = useNavigate();
     useEffect(()=> {
-        if(localStorage.getItem("IDLogueado") === null){
+        if(localStorage.getItem("IDLogueado") != null){
             navigate("/");
         }
     })

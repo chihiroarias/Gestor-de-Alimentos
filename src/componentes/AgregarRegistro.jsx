@@ -6,10 +6,11 @@ import { guardarUnRegistro } from '../features/registrosSlice';
 
 let url ="https://calcount.develotion.com/";
 
-let token = localStorage.getItem("TokenLogueado");
-let id = localStorage.getItem("IDLogueado");
 
 const AgregarRegistro = () => {
+  
+  let token = localStorage.getItem("TokenLogueado");
+  let id = localStorage.getItem("IDLogueado");
 
   const [mensaje, setMensaje] = useState("");
   const cantCalorias = useRef(null);
@@ -22,7 +23,7 @@ const AgregarRegistro = () => {
   const alimentosLista = useSelector(state => state.alimentos.listAlimentos)
 
   const enviarDato = (datos) => {
-    dispatch(guardarUnRegistro(datos));
+      dispatch(guardarUnRegistro(datos));
   };
 
   useEffect(() => {
@@ -53,11 +54,11 @@ const AgregarRegistro = () => {
     const cantidad = cantCalorias.current.value;
     const fecha = fcha.current.value;
 
+    let fchaDeHoy = new Date();
+    let fechaDeAyer = new Date();
+    fechaDeAyer.setDate(fchaDeHoy.getDate() - 1);
 
-    
-    
-    // && fecha >= Date.now()
-    if(cantidad > 0){
+    if(cantidad > 0 && fecha == fchaDeHoy || fecha == fechaDeAyer){
       let cantidadTotal = alimentosLista.find(a=> a.id ==alimento);
       let convert = cantidadTotal.porcion.replace(/[^0-9.]/g, '');
       let cantidadParseada = parseInt(convert);
@@ -86,6 +87,7 @@ const AgregarRegistro = () => {
       })
       .then(r=>r.json())
       .then(datos=>{ 
+
         console.log(datos);
         obj.id = datos.idRegistro;
         console.log(obj);
@@ -103,7 +105,6 @@ const AgregarRegistro = () => {
 
   return (
 
-   
     <div className="Agregar-Registro">
       <select ref={slcAlimentos}>
         {alimentosLista.map(alimento => (

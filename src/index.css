@@ -98,3 +98,8 @@ input[type='checkbox']:checked + .checkLabel {
 .login inputinput[type='button']{
   width:25%;
 }
+
+.Contenedor{
+  padding: 10px, 10px;
+  margin: 10px,10px,10px,10px;
+}

@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { borrarRegistro } from '../features/registrosSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
+
+    const navigate = useNavigate();
+    useEffect(()=> {
+        if(localStorage.getItem("IDLogueado") === null){
+            navigate("/");
+        }
+    })
+
+
 
     const url = 'https://calcount.develotion.com';
     const iduser = localStorage.getItem("IDLogueado");
