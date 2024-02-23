@@ -14,7 +14,7 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    const rastrearUser = e => {
+    const rastrearUser = e => { 
         setUsuario(e.target.value)
     }
 

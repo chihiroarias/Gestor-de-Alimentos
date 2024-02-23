@@ -21,7 +21,5 @@ export const registrosSlice = createSlice({
     }
 })
 
-
-
 export const {guardarRegistros, guardarUnRegistro, borrarRegistro} = registrosSlice.actions;
 export default registrosSlice.reducer;
