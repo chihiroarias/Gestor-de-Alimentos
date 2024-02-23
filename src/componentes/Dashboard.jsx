@@ -30,6 +30,7 @@ const Dashboard = () => {
                 <div className='Container'>
                     <InformeCalorico />
                 </div>
+                <Mapa/>
             </div>
         </>
 

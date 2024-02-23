@@ -30,11 +30,10 @@ const Listado = () => {
       })
         .then(response => response.json())
         .then(datos => {
-          console.log(datos);
           dispatch(guardarRegistros(datos.registros));
         })
         .catch(error => {
-          console.error('Error al obtener registros:', error);
+          alert("error: " + error);
         });
     } else {
       navigate("/");

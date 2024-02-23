@@ -62,14 +62,12 @@ const Registro = () => {
                     return response.json();
                 })
                 .then(responseData => {
-                    console.log('Usuario registrado correctamente:', responseData);
                     localStorage.setItem('IDLogueado', responseData.id);
                     localStorage.setItem('TokenLogueado', responseData.apiKey);
                     localStorage.setItem('CaloriasDiariasLogueado', responseData.caloriasDiarias);
                     navigate("/Dashboard");
                 })
                 .catch(error => {
-                    console.log(error.message);
                     setMensaje("Credenciales no válidas");
                 });
         }else{
