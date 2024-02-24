@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    cantidadCalorias: 0
+    cantidadCalorias: 0,
+    cantidadDiaria: 0
 }
 
 export const caloriasSlice = createSlice({
@@ -16,9 +17,12 @@ export const caloriasSlice = createSlice({
         },
         guardarCalorias: (state, action)=>{
             state.cantidadCalorias = action.payload;
+        },
+        guardarCaloriasDiarias: (state, action)=>{
+            state.cantidadDiaria = action.payload;
         }
     }
 })
 
-export const {incrementar, decrementar, guardarCalorias} = caloriasSlice.actions;
+export const {incrementar, decrementar, guardarCalorias, guardarCaloriasDiarias} = caloriasSlice.actions;
 export default caloriasSlice.reducer;

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { current } from '@reduxjs/toolkit';
 import { guardarUnRegistro } from '../features/registrosSlice';
 
-let url = "https://calcount.develotion.com/";
 
 
 const AgregarRegistro = () => {
+  let url = "https://calcount.develotion.com/";
 
   let token = localStorage.getItem("TokenLogueado");
   let id = localStorage.getItem("IDLogueado");
@@ -111,6 +111,7 @@ const AgregarRegistro = () => {
           console.log(datos);
           obj.id = datos.idRegistro;
           console.log(obj);
+          //dispatch(guardarUnRegistro(datos));
           enviarDato(obj);
         })
         .catch(error => {
