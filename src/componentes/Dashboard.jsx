@@ -8,6 +8,14 @@ import Cabezal from './Cabezal'
 import Mapa from './Mapa'
 const Dashboard = () => {
 
+
+    
+
+
+
+
+
+
     return (
         <>
             <div className='Contenedor'>

@@ -42,19 +42,26 @@ const CaloriasDiarias = () => {
 
 
   function esFechaHoy(fechaStr) {
-    var fecha = new Date(fechaStr);
-    var fechaActual = new Date();
-    var fechaActualStr = fechaActual.toISOString().slice(0, 10); // Formato "año-mes-día"
-    var fechaStr = fecha.toISOString().slice(0, 10);
 
-    return fechaStr === fechaActualStr;
-}
-    
+    const fechaActual = new Date();
+    const year = fechaActual.getUTCFullYear();
+    const month = fechaActual.getUTCMonth() + 1;
+    const day = fechaActual.getDate();
+
+    const fechaISO = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+    var fecha = new Date(fechaStr);
+    var fechaStrS = fecha.toISOString().slice(0, 10);
+
+    return fechaStrS === fechaISO;
+  }
+
   useEffect(() => {
     let calTotales = 0;
     for (let i = 0; i < registros.length; i++) {
       const registro = registros[i];
       if (esFechaHoy(registro.fecha)) {
+
 
         const alimentoId = registro.idAlimento;
         let cantidadUnidades = 0;
@@ -73,7 +80,7 @@ const CaloriasDiarias = () => {
 
     // Calcular la diferencia entre la cantidad de calorías consumidas y la cantidad máxima permitida
     const diferencia = cantCaloriasUsuario - calTotales;
-    
+
     // Asignar color según la diferencia
     if (diferencia < 0) {
       setColor('red'); // Excede la cantidad diaria permitida
@@ -190,4 +197,23 @@ const CaloriasDiarias = () => {
 }
 
 export default CaloriasDiarias
+*/
+
+
+/*
+HOY ES 24/2 Y ME TIRA QUE ES 25/2, ES POR LA ZONA HORARIA
+
+function esFechaHoy(fechaStr) {
+    var fecha = new Date(fechaStr);
+    var fechaActual = new Date();
+    var fechaActualStr = fechaActual.toISOString().slice(0, 10); // Formato "año-mes-día"
+    var fechaStr = fecha.toISOString().slice(0, 10);
+
+    console.log(fechaActual);
+    console.log("Fecha actual str: " + fechaActualStr);
+    console.log("Fecha str: " + fechaStr);
+    console.log(fechaActualStr + " | " + fechaStr);
+    return fechaStr === fechaActualStr;
+  }
+
 */

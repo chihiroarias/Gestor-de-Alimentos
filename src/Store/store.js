@@ -4,6 +4,7 @@ import alimentosReducer from "../features/alimentosSlice";
 import climaReducer from "../features/climaSlice";
 import registrosReducer from "../features/registrosSlice";
 import caloriasReducer from "../features/caloriasSlice";
+import imagenesReducer from "../features/imagenesSlice";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         alimentos: alimentosReducer,
         clima: climaReducer,
         registros: registrosReducer,
-        calorias: caloriasReducer
+        calorias: caloriasReducer,
+        imgs: imagenesReducer
     }
 });

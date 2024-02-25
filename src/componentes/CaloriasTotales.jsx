@@ -35,6 +35,7 @@ const CaloriasTotales = () => {
     };
 
     useEffect(() => {
+        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al principio: " + cantCalorias);
         let calTotales = 0;
         for (let i = 0; i < registros.length; i++) {
             const registro = registros[i];
@@ -49,8 +50,11 @@ const CaloriasTotales = () => {
                 cantidadUnidades = registro.cantidad;
             }
             calTotales += caloriasxid(alimentoId) * cantidadUnidades;
+            //console.log("[CaloriasTotales, useEffect] Calorias calculadas antes de salir del for: " + calTotales);
         }
+        //console.log("[CaloriasTotales, useEffect] Calorias calculadas luego de salir del for: " + calTotales);
         dispatch(guardarCalorias(calTotales));
+        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al final: " + cantCalorias);
     }, [registros]);
 
     

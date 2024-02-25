@@ -37,7 +37,7 @@ const AgregarRegistro = () => {
     })
       .then(r => r.json())
       .then(datos => {
-        console.log(datos);
+        //console.log(datos);
         dispatch(guardarAlimentos(datos.alimentos));
       })
   }, []);
@@ -108,9 +108,9 @@ const AgregarRegistro = () => {
         .then(r => r.json())
         .then(datos => {
 
-          console.log(datos);
+          //console.log(datos);
           obj.id = datos.idRegistro;
-          console.log(obj);
+          //console.log(obj);
           //dispatch(guardarUnRegistro(datos));
           enviarDato(obj);
         })

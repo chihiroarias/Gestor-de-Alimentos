@@ -31,7 +31,7 @@ const Mapa = () => {
 
     const paises = useSelector(state => state.paises.paisesLista);
 
-    console.log(paises);
+    //console.log(paises);
     const [cantPorPais, setCantpais] = useState([]);
 
     useEffect(() => {

@@ -16,7 +16,10 @@ export const caloriasSlice = createSlice({
             state.cantidadCalorias -= action.payload; 
         },
         guardarCalorias: (state, action)=>{
+            //console.log("[guardarCalorias (cl1)] Calorias antes: " + state.cantidadCalorias);
+            //console.log("[guardarCalorias (cl2)] Calorias que me pasan: " + action.payload);
             state.cantidadCalorias = action.payload;
+            //console.log("[guardarCalorias (cl3)] Cómo queda el initialState: " + state.cantidadCalorias);
         },
         guardarCaloriasDiarias: (state, action)=>{
             state.cantidadDiaria = action.payload;
