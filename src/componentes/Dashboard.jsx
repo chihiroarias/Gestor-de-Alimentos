@@ -6,6 +6,7 @@ import AgregarRegistro from './AgregarRegistro'
 import Analisis from './Analisis'
 import Cabezal from './Cabezal'
 import Mapa from './Mapa'
+import NuevaMeta from './NuevaMeta'
 const Dashboard = () => {
 
 
@@ -39,6 +40,9 @@ const Dashboard = () => {
                     <InformeCalorico />
                 </div>
                 <Mapa/>
+                <div className='Container'>
+                    <NuevaMeta />
+                </div>
             </div>
         </>
 
