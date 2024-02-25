@@ -31,6 +31,7 @@ const GraficaCantPorAlimento = () => {
         setDatosGrafica(datosGraficos);
     }, [registros]);
 
+
     // Configuración de los colores de fondo y borde
     const backgroundColor = [
         'rgba(255, 99, 132, 0.2)',

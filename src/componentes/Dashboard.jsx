@@ -12,7 +12,7 @@ import GraficaCalPorFecha from './GraficaCalPorFecha'
 const Dashboard = () => {
 
 
-    
+
 
 
 
@@ -21,36 +21,50 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='Contenedor'>
-                <div className='Container'>
-                    <Cabezal />
-                    <hr />
+            <div className='container'>
+                <div className='row'>
+                    <div className='col'>
+                        <Cabezal />
+                        <hr />
+                    </div>
+                </div>
+                <div className='row mt-auto'>
+                    <div className='col'>
+                        <NuevaMeta />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <InformeCalorico />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-md-6 align-items-center'>
+                        <AgregarRegistro />
+                        <hr />
+                    </div>
+                    <div className='col-md-6'>
+                        <Listado />
+                        <hr />
+                    </div>
+                </div>
 
+                <div className="row">
+                    <div className="col-md-6">
+                        <GraficaCantPorAlimento />
+                    </div>
+                    <div className="col-md-6">
+                        <GraficaCalPorFecha />
+                    </div>
                 </div>
-                <div className='Container'>
-                    <AgregarRegistro />
-                    <hr />
+
+                <div className='row'>
+                    <div className='col'>
+                        <Mapa />
+                    </div>
                 </div>
-                <div className='Container'>
-                    <Listado />
-                    <hr />
-                </div>
-                {/*<div className='Container'>
-                    <Mapa/>
-    </div>*/}
-                <div className='Container'>
-                    <InformeCalorico />
-                </div>
-                <Mapa/>
-                <div className='Container'>
-                    <NuevaMeta />
-                </div>
-                <div className='Container'>
-                    <GraficaCantPorAlimento />
-                </div>
-                <div className='Container'>
-                    <GraficaCalPorFecha />
-                </div>
+                
+
             </div>
         </>
 
@@ -73,3 +87,88 @@ import NotFound from './NotFound';
 
 */
 
+
+/* ANTERIOR
+
+<div className='Contenedor'>
+                <div className='Container'>
+                    <Cabezal />
+                    <hr />
+
+                </div>
+                <div className='Container'>
+                    <AgregarRegistro />
+                    <hr />
+                </div>
+                <div className='Container'>
+                    <Listado />
+                    <hr />
+                </div>
+                <div className='Container'>
+                    <InformeCalorico />
+                </div>
+                <div className='Container'>
+                    <Mapa />
+                </div>
+                <div className='Container'>
+                    <NuevaMeta />
+                </div>
+                <div className='Container'>
+                    <GraficaCantPorAlimento />
+                </div>
+                <div className='Container'>
+                    <GraficaCalPorFecha />
+                </div>
+            </div>
+*/
+
+
+
+/* Con diseño preliminar
+
+<div className='container'>
+                <div className='row'>
+                    <div className='col'>
+                        <Cabezal />
+                        <hr />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <AgregarRegistro />
+                        <hr />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <Listado />
+                        <hr />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <InformeCalorico />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <Mapa />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <NuevaMeta />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <GraficaCantPorAlimento />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <GraficaCalPorFecha />
+                    </div>
+                </div>
+            </div>
+*/

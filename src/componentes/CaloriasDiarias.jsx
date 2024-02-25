@@ -97,7 +97,14 @@ const CaloriasDiarias = () => {
 
 
   return (
-    <div style={{ color: color }}>Calorias Diarias: {cantCaloriasDiarias}</div>
+    <div className="row align-items-center">
+      <div className="col">
+        <h2 style={{ color: color }}>Calorias Diarias:</h2>
+      </div>
+      <div className="col">
+        <h3 style={{ color: color }}>{cantCaloriasDiarias}</h3>
+      </div>
+    </div>
   )
 }
 

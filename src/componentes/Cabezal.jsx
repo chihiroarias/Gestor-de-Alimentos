@@ -4,28 +4,24 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 const Cabezal = () => {
 
     const navigate = useNavigate();
-    const Logout = () => { 
-        localStorage.clear(); 
+    const Logout = () => {
+        localStorage.clear();
         navigate("/");
     }
-  return (
+    return (
 
-    <div>
-        <header>    
-      
-            <input type="button" value="LOGOUT" onClick={Logout} />
-            <br/>
-            <NavLink to="/Listado" className="button">| Listado |</NavLink> 
-            <NavLink to="/Informe"> Informes </NavLink>
-            <NavLink to="/Analisis">| Análisis |</NavLink>
-            <br/>
-        </header>
-        <main>
-            <Outlet/>
-        </main>
-    </div>
-  
-  )
+        <div>
+            <header>
+                <div className="text-right">
+                    <input className="btn btn-dark text-white" type="button" value="LOGOUT" onClick={Logout} />
+                </div>
+            </header>
+            <main>
+                <Outlet />
+            </main>
+        </div>
+
+    )
 }
 
 export default Cabezal

@@ -6,17 +6,19 @@ import CaloriasTotales from './CaloriasTotales';
 let url = "https://calcount.develotion.com/";
 
 const InformeCalorico = () => {
-  
+
   let iduser = localStorage.getItem("IDLogueado");
   let key = localStorage.getItem("TokenLogueado");
 
   return (
     <div className="informe-calorico">
-      <h3>Calorias totales</h3>
-        <CaloriasTotales/>
-      <h3>Calorias diarias</h3>
-      <div>
-        <CaloriasDiarias/>
+      <div className="row">
+        <div className="col-md-6 d-flex justify-content-center">
+          <CaloriasTotales />
+        </div>
+        <div className="col-md-6 d-flex justify-content-center">
+          <CaloriasDiarias />
+        </div>
       </div>
     </div>
   )
@@ -24,3 +26,16 @@ const InformeCalorico = () => {
 
 export default InformeCalorico
 
+
+
+
+/* Antes
+
+<div className="informe-calorico">
+      <h3>Calorias totales</h3>
+        <CaloriasTotales/>
+      <h3>Calorias diarias</h3>
+      <div>
+        <CaloriasDiarias/>
+      </div>
+    </div>*/

@@ -56,7 +56,7 @@ const Listado = () => {
     //       const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
     //       return { idAlimento: alimento.id, rutaImagen: rutaImagen };
     //   });
-  
+
     //   console.log("lo que contiene rutasImagenes: ");
     //   console.log(rutasImagenes);
     //   return rutasImagenes;
@@ -81,7 +81,7 @@ const Listado = () => {
   //         const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
   //         return { idAlimento: alimento.id, rutaImagen: rutaImagen };
   //     });
-  
+
   //     return rutasImagenes;
   //   };
 
@@ -109,8 +109,8 @@ const Listado = () => {
         setRegistrosFiltrados(registrosEncontrados.filter(reg => new Date(reg.fecha) > semana));
         break;
       case "Mensual":
-        setRegistrosFiltrados(registrosEncontrados.filter(reg=>{
-          let fchRegistro= new Date(reg.fecha);
+        setRegistrosFiltrados(registrosEncontrados.filter(reg => {
+          let fchRegistro = new Date(reg.fecha);
           return fchRegistro.getMonth() === mesActual;
         }));
         break;
@@ -126,10 +126,35 @@ const Listado = () => {
 
   return (
     <div className="Listado-Registros">
-      Registros:
-      {registrosFiltrados.map(reg => (
-        <RegistroComida key={reg.id} {...reg} />
-      ))}
+      <div className="form-group row">
+        <label htmlFor="slcFiltro" className="col-sm-3 col-form-label">Buscar por fecha:</label>
+        <div className="col-sm-6">
+          <select className="form-control" id="slcFiltro" ref={slcFiltro}>
+            <option value="Semanal">Semanal</option>
+            <option value="Mensual">Mensual</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+        <div className="col-sm-3">
+          <button className="btn btn-primary" onClick={Filtro}>BUSCAR</button>
+        </div>
+      </div>
+
+      <h4>Registros:</h4>
+      <div className="registros-list" style={{ maxHeight: '200px', overflowY: 'auto' }}>
+        {registrosFiltrados.map(reg => (
+          <RegistroComida key={reg.id} {...reg} />
+        ))}
+      </div>
+    </div>
+  )
+}
+export default Listado
+
+
+/* Antes
+
+<div className="Listado-Registros">
 
       <label htmlFor="slcFiltro">Buscar por fecha</label>
       <select className="slcFiltro" ref={slcFiltro}>
@@ -138,8 +163,42 @@ const Listado = () => {
         <option value="General">General</option>
       </select>
       <input type="button" value="BUSCAR" onClick={Filtro}></input>
-    </div>
 
-  )
-}
-export default Listado
+
+      Registros:
+      {registrosFiltrados.map(reg => (
+        <RegistroComida key={reg.id} {...reg} />
+      ))}
+
+
+    </div>
+*/
+
+
+
+
+/* Diseño preliminar
+
+<div className="Listado-Registros">
+      <div className="form-group row">
+        <label htmlFor="slcFiltro" className="col-sm-3 col-form-label">Buscar por fecha:</label>
+        <div className="col-sm-6">
+          <select className="form-control" id="slcFiltro" ref={slcFiltro}>
+            <option value="Semanal">Semanal</option>
+            <option value="Mensual">Mensual</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+        <div className="col-sm-3">
+          <button className="btn btn-primary" onClick={Filtro}>BUSCAR</button>
+        </div>
+      </div>
+
+      <h4>Registros:</h4>
+      <div className="registros-list">
+        {registrosFiltrados.map(reg => (
+          <RegistroComida key={reg.id} {...reg} />
+        ))}
+      </div>
+    </div>
+*/

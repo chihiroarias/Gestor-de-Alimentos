@@ -55,8 +55,6 @@ const Mapa = () => {
 
     return (
         <div>
-            const position = [51.505, -0.09]
-
             <MapContainer center={[-34, -56]} zoom={4} scrollWheelZoom={false}
                 style={{ width: "100%", height: "400px" }}>
                 <TileLayer

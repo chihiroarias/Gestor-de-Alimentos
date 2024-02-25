@@ -5,9 +5,9 @@ import { guardarCalorias } from '../features/caloriasSlice';
 const CaloriasTotales = () => {
     const registros = useSelector(state => state.registros.registrosLista);
     const alimentos = useSelector(state => state.alimentos.listAlimentos);
-    const cantCalorias = useSelector(state=> state.calorias.cantidadCalorias);
+    const cantCalorias = useSelector(state => state.calorias.cantidadCalorias);
 
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     // const caloriasxid = (id) => {
     //     const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
@@ -29,14 +29,14 @@ const CaloriasTotales = () => {
 
     const proporcionAlimentoXId = (id) => {
         const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
-    
+
         if (alimentoEncontrado) {
             const porcion = alimentoEncontrado.porcion;
-    
+
             // Utilizar una expresión regular para extraer la unidad de medida
             const proporcionRegex = /[a-zA-Z]+/g;
             const proporcionMatch = porcion.match(proporcionRegex);
-    
+
             if (proporcionMatch && proporcionMatch.length > 0) {
                 const proporcion = proporcionMatch[0];
                 return proporcion.toLowerCase();
@@ -82,11 +82,11 @@ const CaloriasTotales = () => {
             let cantidadUnidades = 0;
 
             //Si es "u" no se va a dividir entre 100, sino sí.
-            if(proporcionAlimentoXId(alimentoId) != "u"){
+            if (proporcionAlimentoXId(alimentoId) != "u") {
                 cantidadUnidades = registro.cantidad / 100;
                 //console.log(proporcionAlimentoXId(alimentoId));
             }
-            else{
+            else {
                 cantidadUnidades = registro.cantidad;
             }
             calTotales += caloriasxid(alimentoId) * cantidadUnidades;
@@ -97,11 +97,16 @@ const CaloriasTotales = () => {
         //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al final: " + cantCalorias);
     }, [registros]);
 
-    
+
 
     return (
-        <div>
-            <h3>{cantCalorias}</h3>
+        <div className="row align-items-center">
+            <div className="col">
+                <h2>Calorias totales:</h2>
+            </div>
+            <div className="col">
+                <h3>{cantCalorias}</h3>
+            </div>
         </div>
     )
 }

@@ -126,23 +126,45 @@ const AgregarRegistro = () => {
 
   return (
 
-    <div className="Agregar-Registro">
-      <select ref={slcAlimentos}>
-        {alimentosLista.map(alimento => (
-          <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
-        ))}
-      </select>
-      <label htmlFor="Unidades">Cantidad: </label>
-      <input type="number" id="Unidades" ref={cantCalorias} />
+    <div className="container">
+      <div className="row mb-3">
+        <label htmlFor="selectAlimentos" className="col-sm-2 col-form-label">Seleccionar alimento:</label>
+        <div className="col-sm-10">
+          <select id="selectAlimentos" className="form-select" ref={slcAlimentos}>
+            {alimentosLista.map(alimento => (
+              <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
+            ))}
+          </select>
+        </div>
+      </div>
 
-      <label htmlFor="fcha">Fecha</label>
-      <input type="date" id="fcha" ref={fcha} />
-      <p></p>
+      <div className="row mb-3">
+        <label htmlFor="inputCantidad" className="col-sm-2 col-form-label">Cantidad:</label>
+        <div className="col-sm-10">
+          <input type="number" id="inputCantidad" className="form-control" ref={cantCalorias} />
+        </div>
+      </div>
 
-      <input type="button" value="REGISTRAR" onClick={Registrar} />
-      <article>
-        <p>{mensaje}</p>
-      </article>
+      <div className="row mb-3">
+        <label htmlFor="inputFecha" className="col-sm-2 col-form-label">Fecha:</label>
+        <div className="col-sm-10">
+          <input type="date" id="inputFecha" className="form-control" ref={fcha} />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <button type="button" className="btn btn-primary" onClick={Registrar}>REGISTRAR</button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <article>
+            <p>{mensaje}</p>
+          </article>
+        </div>
+      </div>
     </div>
 
 
@@ -166,4 +188,67 @@ curl --location -g '{{calcount}}/registros.php' \
     "cantidad": 200,
     "fecha": "2023-09-21"
 }'
+*/
+
+
+
+/* Como estaba antes.
+
+<div className="Agregar-Registro">
+      <select ref={slcAlimentos}>
+        {alimentosLista.map(alimento => (
+          <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
+        ))}
+      </select>
+      <label htmlFor="Unidades">Cantidad: </label>
+      <input type="number" id="Unidades" ref={cantCalorias} />
+
+      <label htmlFor="fcha">Fecha</label>
+      <input type="date" id="fcha" ref={fcha} />
+      <p></p>
+
+      <input type="button" value="REGISTRAR" onClick={Registrar} />
+      <article>
+        <p>{mensaje}</p>
+      </article>
+    </div>
+*/
+
+
+
+/* DISEÑO PRELIMINAR
+
+<div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <label htmlFor="selectAlimentos" className="form-label">Seleccionar alimento:</label>
+          <select id="selectAlimentos" className="form-select mb-3" ref={slcAlimentos}>
+            {alimentosLista.map(alimento => (
+              <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-6">
+          <label htmlFor="inputCantidad" className="form-label">Cantidad:</label>
+          <input type="number" id="inputCantidad" className="form-control mb-3" ref={cantCalorias} />
+
+          <label htmlFor="inputFecha" className="form-label">Fecha:</label>
+          <input type="date" id="inputFecha" className="form-control mb-3" ref={fcha} />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <button type="button" className="btn btn-primary" onClick={Registrar}>REGISTRAR</button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <article>
+            <p>{mensaje}</p>
+          </article>
+        </div>
+      </div>
+    </div>
 */
