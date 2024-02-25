@@ -10,10 +10,10 @@ export const caloriasSlice = createSlice({
     initialState,
     reducers:{
         incrementar: (state, action) => {
-            state.cantidadCalorias += action.payload;
+            state.cantidadCalorias = state.cantidadCalorias + action.payload;
         },
         decrementar: (state, action) =>{
-            state.cantidadCalorias -= action.payload; 
+            state.cantidadCalorias = state.cantidadCalorias - action.payload
         },
         guardarCalorias: (state, action)=>{
             //console.log("[guardarCalorias (cl1)] Calorias antes: " + state.cantidadCalorias);

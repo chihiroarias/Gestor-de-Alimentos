@@ -9,13 +9,23 @@ const CaloriasTotales = () => {
 
     const dispatch = useDispatch(); 
 
-    const caloriasxid = (id) => {
-        const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
-        console.log("Id: ");
-        console.log(id);
-        return alimentoEncontrado ? alimentoEncontrado.calorias : 0;
-    };
+    // const caloriasxid = (id) => {
+    //     const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+    //     console.log("Id: ");
+    //     console.log(id);
+    //     return alimentoEncontrado ? alimentoEncontrado.calorias : 0;
+    // };
 
+
+    const caloriasxid = (id) => {
+        for (let i = 0; i < alimentos.length; i++) {
+            if (alimentos[i].id === id) {
+                console.log("Id: ", id);
+                return alimentos[i].calorias;
+            }
+        }
+        return 0; // Retorna 0 si no se encuentra el alimento con el ID dado
+    };
 
     const proporcionAlimentoXId = (id) => {
         const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
@@ -62,7 +72,7 @@ const CaloriasTotales = () => {
 
     useEffect(() => {
         //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al principio: " + cantCalorias);
-        console.log("Esto se esta ejecutando");
+        //console.log("Esto se esta ejecutando");
         let calTotales = 0;
         for (let i = 0; i < registros.length; i++) {
             const registro = registros[i];
@@ -74,13 +84,13 @@ const CaloriasTotales = () => {
             //Si es "u" no se va a dividir entre 100, sino sí.
             if(proporcionAlimentoXId(alimentoId) != "u"){
                 cantidadUnidades = registro.cantidad / 100;
-                console.log(proporcionAlimentoXId(alimentoId));
+                //console.log(proporcionAlimentoXId(alimentoId));
             }
             else{
                 cantidadUnidades = registro.cantidad;
             }
             calTotales += caloriasxid(alimentoId) * cantidadUnidades;
-            console.log("[CaloriasTotales, useEffect] Calorias calculadas antes de salir del for: " + calTotales);
+            //console.log("[CaloriasTotales, useEffect] Calorias calculadas antes de salir del for: " + calTotales);
         }
         //console.log("[CaloriasTotales, useEffect] Calorias calculadas luego de salir del for: " + calTotales);
         dispatch(guardarCalorias(calTotales));

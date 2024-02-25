@@ -7,6 +7,8 @@ import Analisis from './Analisis'
 import Cabezal from './Cabezal'
 import Mapa from './Mapa'
 import NuevaMeta from './NuevaMeta'
+import GraficaCantPorAlimento from './GraficaCantPorAlimento'
+import GraficaCalPorFecha from './GraficaCalPorFecha'
 const Dashboard = () => {
 
 
@@ -42,6 +44,12 @@ const Dashboard = () => {
                 <Mapa/>
                 <div className='Container'>
                     <NuevaMeta />
+                </div>
+                <div className='Container'>
+                    <GraficaCantPorAlimento />
+                </div>
+                <div className='Container'>
+                    <GraficaCalPorFecha />
                 </div>
             </div>
         </>

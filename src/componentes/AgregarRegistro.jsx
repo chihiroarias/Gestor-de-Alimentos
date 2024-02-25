@@ -111,8 +111,8 @@ const AgregarRegistro = () => {
           //console.log(datos);
           obj.id = datos.idRegistro;
           //console.log(obj);
-          //dispatch(guardarUnRegistro(datos));
-          enviarDato(obj);
+          dispatch(guardarUnRegistro(obj));
+          //enviarDato(obj);
         })
         .catch(error => {
           alert(error.message);
