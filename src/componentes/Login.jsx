@@ -11,10 +11,10 @@ const Login = () => {
     //Esto es para deshabilitar el botón.
     const [usuarioCampoRastreo, setUsuario] = useState('');
     const [passwordCampoRastreo, setPassword] = useState('');
-    
+
     const navigate = useNavigate();
 
-    const rastrearUser = e => { 
+    const rastrearUser = e => {
         setUsuario(e.target.value)
     }
 
@@ -27,7 +27,7 @@ const Login = () => {
         const password = campoPass.current.value;
 
 
-        if (usuario !== null && usuario !== "" && password !== null && password !== "" ) {
+        if (usuario !== null && usuario !== "" && password !== null && password !== "") {
 
             const data = {
                 usuario,
@@ -70,7 +70,55 @@ const Login = () => {
 
 
     return (
-        <div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="usuario">Usuario:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="usuario"
+                                ref={campoUser}
+                                onChange={rastrearUser}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="contrasena">Contraseña:</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="contrasena"
+                                ref={campoPass}
+                                onChange={rastrearPass}
+                            />
+                        </div>
+                        <input
+                            type="button"
+                            className="btn btn-primary"
+                            value="Loguearse"
+                            onClick={loginUsuario}
+                            disabled={!usuarioCampoRastreo || !passwordCampoRastreo}
+                        />
+                        <article>
+                            <h2>{mensaje}</h2>
+                        </article>
+                        <Link to="/Registro">¿No estás registrado?</Link>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    )
+}
+
+export default Login
+
+
+/* Antes
+
+<div>
             <label> Usuario:
                 <input type="text" ref={campoUser} onChange={rastrearUser} />
             </label>
@@ -90,7 +138,4 @@ const Login = () => {
             <Link to="/Registro">¿No estas registrado?</Link>
 
         </div>
-    )
-}
-
-export default Login
+*/

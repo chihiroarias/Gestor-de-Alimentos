@@ -6,8 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const Registro = () => {
 
     const navigate = useNavigate();
-    useEffect(()=> {
-        if(localStorage.getItem("IDLogueado") != null){
+    useEffect(() => {
+        if (localStorage.getItem("IDLogueado") != null) {
             navigate("/");
         }
     })
@@ -19,15 +19,15 @@ const Registro = () => {
 
     const [mensaje, setMensaje] = useState('');
 
-    
+
     const dispatch = useDispatch();
     const paisesEncontrados = useSelector(state => state.paises.paisesLista);
-    
+
     useEffect(() => {
         fetch("https://calcount.develotion.com/paises.php")
-        .then(r => r.json())
-        .then(datos => {
-            dispatch(guardarPaises(datos.paises))
+            .then(r => r.json())
+            .then(datos => {
+                dispatch(guardarPaises(datos.paises))
             })
     }, [])
 
@@ -38,8 +38,8 @@ const Registro = () => {
         const caloriasDiarias = parseInt(campoCalorias.current.value);
         const pais = slcPais.current.value;
 
-        if (usuario != null && password != null && caloriasDiarias != null && slcPais !=null
-             && usuario != "" && password != "" && caloriasDiarias != "") {
+        if (usuario != null && password != null && caloriasDiarias != null && slcPais != null
+            && usuario != "" && password != "" && caloriasDiarias != "") {
 
             const data = {
                 usuario,
@@ -70,7 +70,7 @@ const Registro = () => {
                 .catch(error => {
                     setMensaje("Credenciales no válidas");
                 });
-        }else{
+        } else {
             setMensaje("Complete los datos.");
         }
     };
@@ -78,7 +78,53 @@ const Registro = () => {
 
 
     return (
-        <div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <div>
+                        <label> Usuario:
+                            <input type="text" className="form-control" ref={campoUser} />
+                        </label>
+                        <br />
+                        <label> Contraseña:
+                            <input type="text" className="form-control" ref={campoPass} />
+                        </label>
+                        <br />
+                        <label> Calorias diarias:
+                            <input type="text" className="form-control" ref={campoCalorias} />
+                        </label>
+                        <br />
+                        <label>Selecciona un país:</label>
+                        <select className="form-control" ref={slcPais}>
+                            {paisesEncontrados.map(pais => (
+                                <option key={pais.id} value={pais.id}>{pais.name}</option>
+                            ))}
+                        </select>
+                        <br />
+                        <input
+                            type="button"
+                            className="btn btn-primary"
+                            value="Registrarse"
+                            onClick={registrarUsuario}
+                        />
+                        <article>
+                            <p>{mensaje}</p>
+                        </article>
+                        <Link to="/">¿Ya tienes una cuenta?</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Registro
+
+
+
+/* Antes
+
+<div>
             <label> Usuario:
                 <input type="text" ref={campoUser} />
             </label>
@@ -110,7 +156,4 @@ const Registro = () => {
             <Link to="/">¿Ya tienes una cuenta?</Link>
 
         </div>
-    )
-}
-
-export default Registro
+*/
