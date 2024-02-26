@@ -31,7 +31,6 @@ const Mapa = () => {
 
     const paises = useSelector(state => state.paises.paisesLista);
 
-    //console.log(paises);
     const [cantPorPais, setCantpais] = useState([]);
 
     useEffect(() => {
@@ -68,9 +67,6 @@ const Mapa = () => {
                     return (
                         <Marker key={coord.id} position={[coord.latitude, coord.longitude]}>
                             <Popup>
-                                País: {coord.nombre} <br />
-                                Latitud: {coord.latitude} <br />
-                                Longitud: {coord.longitude} <br />
                                 Cantidad de Personas: {cantidadPersonas}
                             </Popup>
                         </Marker>

@@ -27,15 +27,3 @@ const InformeCalorico = () => {
 export default InformeCalorico
 
 
-
-
-/* Antes
-
-<div className="informe-calorico">
-      <h3>Calorias totales</h3>
-        <CaloriasTotales/>
-      <h3>Calorias diarias</h3>
-      <div>
-        <CaloriasDiarias/>
-      </div>
-    </div>*/

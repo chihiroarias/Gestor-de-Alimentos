@@ -9,21 +9,9 @@ const CaloriasTotales = () => {
 
     const dispatch = useDispatch();
 
-    // const caloriasxid = (id) => {
-    //     const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
-    //     console.log("Id: ");
-    //     console.log(id);
-    //     return alimentoEncontrado ? alimentoEncontrado.calorias : 0;
-    // };
-
-
     const caloriasxid = (id) => {
         for (let i = 0; i < alimentos.length; i++) {
             if (alimentos[i].id == id) {
-                console.log("Id: ", id);
-                console.log(typeof id);
-                console.log("Id alimento: ", alimentos[i].id);
-                console.log(typeof alimentos[i].id);
                 return alimentos[i].calorias;
             }
         }
@@ -44,73 +32,31 @@ const CaloriasTotales = () => {
 
             if (proporcionMatch && proporcionMatch.length > 0) {
                 const proporcion = proporcionMatch[0];
-                console.log("Porporcion: ");
-                console.log(proporcion);
                 return proporcion.toLowerCase();
             }
         } else {
-            console.log("caí en el else");
-            console.log(alimentoEncontrado);
             return null;
         }
     };
 
 
-
-    // useEffect(() => {
-    //     // Calculamos las calorías totales sumando las calorías de cada registro
-    //     const totalCalorias = registros.reduce((total, registro) => {
-    //         const caloriasPorPorcion = caloriasxid(registro.idAlimento);
-    //         let cantidadUnidades = 0;
-    //         //Si es "u" no se va a dividir entre 100, sino sí.
-    //         if(proporcionAlimentoXId(registro.idAlimento) != "u"){
-    //             cantidadUnidades = registro.cantidad / 100;
-    //         }
-    //         else{
-    //             cantidadUnidades = registro.cantidad;
-    //         }
-    //         // Sumamos las calorías del registro actual
-    //         return total + (caloriasPorPorcion * cantidadUnidades);
-    //     }, 0);
-
-    //     dispatch(guardarCalorias(totalCalorias));
-    //     console.log('Total de calorías:', totalCalorias);
-    // }, [registros]); // Ejecutar cuando hay cambios en los registros o alimentos
-
-
-
     useEffect(() => {
-        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al principio: " + cantCalorias);
-        console.log("------------------------");
-        console.log("Esto se esta ejecutando");
-        console.log("Y la lista de alimentos es: ");
-        console.log("------------------------");
-        console.log(alimentos);
         let calTotales = 0;
         for (let i = 0; i < registros.length; i++) {
             const registro = registros[i];
-            console.log("Registro: ");
-            console.log(registro);
             const alimentoId = registro.idAlimento;
-            console.log("ALIMENTOID: ");
-            console.log(typeof alimentoId);
             let cantidadUnidades = 0;
 
             //Si es "u" no se va a dividir entre 100, sino sí.
             if (proporcionAlimentoXId(alimentoId) != "u") {
                 cantidadUnidades = registro.cantidad / 100;
-                console.log("Proporcion por id: " + alimentoId);
-                console.log(proporcionAlimentoXId(alimentoId));
             }
             else {
                 cantidadUnidades = registro.cantidad;
             }
             calTotales += caloriasxid(alimentoId) * cantidadUnidades;
-            //console.log("[CaloriasTotales, useEffect] Calorias calculadas antes de salir del for: " + calTotales);
         }
-        //console.log("[CaloriasTotales, useEffect] Calorias calculadas luego de salir del for: " + calTotales);
         dispatch(guardarCalorias(calTotales));
-        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al final: " + cantCalorias);
     }, [registros]);
 
 
@@ -128,108 +74,3 @@ const CaloriasTotales = () => {
 }
 
 export default CaloriasTotales;
-
-/*
-useEffect(() => {
-        let calTotales = 0;
-        for (let i = 0; i < registros.length; i++) {
-            const registro = registros[i];
-            const alimentoId = registro.idAlimento;
-            let cantidadUnidades = 0;
-
-            //Si es "u" no se va a dividir entre 100, sino sí.
-            if(proporcionAlimentoXId(alimentoId) != "u"){
-                cantidadUnidades = registro.cantidad / 100;
-            }
-            else{
-                cantidadUnidades = registro.cantidad;
-            }
-            calTotales += caloriasxid(alimentoId) * cantidadUnidades;
-        }
-        dispatch(guardarCalorias(calTotales));
-    }, [registros]);
-
-
-
-
-
-    useEffect(() => {
-        // Calculamos las calorías totales sumando las calorías de cada registro
-        const totalCalorias = registros.reduce((total, registro) => {
-            const caloriasPorPorcion = caloriasxid(registro.idAlimento);
-            let cantidadUnidades = 0;
-            //Si es "u" no se va a dividir entre 100, sino sí.
-            if(proporcionAlimentoXId(registro.idAlimento) != "u"){
-                cantidadUnidades = registro.cantidad / 100;
-            }
-            else{
-                cantidadUnidades = registro.cantidad;
-            }
-            // Sumamos las calorías del registro actual
-            return total + (caloriasPorPorcion * cantidadUnidades);
-        }, 0);
-
-        dispatch(guardarCalorias(totalCalorias));
-        console.log('Total de calorías:', totalCalorias);
-    }, [registros]); // Ejecutar cuando hay cambios en los registros o alimentos
-
-
-
-
-
-
-
-
-        // Calculamos las calorías totales sumando las calorías de cada registro
-        const totalCalorias = registros.reduce((total, registro) => {
-            const caloriasPorPorcion = caloriasxid(registro.idAlimento);
-            let cantidadUnidades = 0;
-            //Si es "u" no se va a dividir entre 100, sino sí.
-            if(proporcionAlimentoXId(registro.idAlimento) != "u"){
-                cantidadUnidades = registro.cantidad / 100;
-            }
-            else{
-                cantidadUnidades = registro.cantidad;
-            }
-            return total + (caloriasPorPorcion * cantidadUnidades);
-        }, 0);
-
-        dispatch(guardarCalorias(totalCalorias));
-
-
-
-
-
-
-
-
-
-
-
-
-useEffect(() => {
-        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al principio: " + cantCalorias);
-        let calTotales = 0;
-        for (let i = 0; i < registros.length; i++) {
-            const registro = registros[i];
-            const alimentoId = registro.idAlimento;
-            let cantidadUnidades = 0;
-
-            //Si es "u" no se va a dividir entre 100, sino sí.
-            if(proporcionAlimentoXId(alimentoId) != "u"){
-                cantidadUnidades = registro.cantidad / 100;
-            }
-            else{
-                cantidadUnidades = registro.cantidad;
-            }
-            calTotales += caloriasxid(alimentoId) * cantidadUnidades;
-            //console.log("[CaloriasTotales, useEffect] Calorias calculadas antes de salir del for: " + calTotales);
-        }
-        //console.log("[CaloriasTotales, useEffect] Calorias calculadas luego de salir del for: " + calTotales);
-        dispatch(guardarCalorias(calTotales));
-        //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al final: " + cantCalorias);
-    }, [registros]);
-
-
-
-*/

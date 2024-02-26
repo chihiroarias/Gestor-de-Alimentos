@@ -116,7 +116,7 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={imagen} alt={`Imagen de alimento ${idAlimento}`} style={{ marginRight: '10px' }} />
             <p>
-                Id: {id} | Alimento: {nombreAlimento} (ID{idAlimento}) | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
+               Id: {id} | Alimento: {nombreAlimento} (ID{idAlimento}) | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
                 <button onClick={eliminarRegistro}>X</button>
             </p>
         </div>
@@ -124,68 +124,3 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
 };
 
 export default RegistroComida
-
-/*
-
- useEffect(() => {
-        const obtenerNombreAlimento = () => {
-            // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
-            const alimentoEncontrado = alimentos.find(alimento => alimento.id === idAlimento);
-            
-            if (alimentoEncontrado) {
-                return alimentoEncontrado.nombre;
-            }
-          };
-      
-          // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
-          //const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
-          setNombreAlimento(obtenerNombreAlimento());
-          //obtenerNombreAlimento(idAlimentoBuscado);
-    }, [])
-*/
-
-
-
-
-/*
-
-<div>
-            <p>
-                Id: {id} | Alimento: {idAlimento} | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
-                <button onClick={eliminarRegistro}>X</button>
-            </p>
-            <img src={obtenerRutaImagen(idAlimento)} alt={`Imagen de alimento ${idAlimento}`} />
-        </div>
-*/
-
-
-
-
-// const registros = useSelector(state => state.registros.registrosLista);
-    // const alimentos = useSelector(state => state.alimentos.listAlimentos);
-    // const [nombreAlimento, setNombreAlimento] = useState("");
-
-
-    // const obtenerNombreAlimentoPorId = (idA) => {
-    //     // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
-    //     const alimentoEncontrado = alimentos.find(alimento => alimento.id === idA);
-        
-    //     if (alimentoEncontrado) {
-    //       return alimentoEncontrado.nombre;
-    //     }
-    //   };
-
-    // const obtenerNombreAlimento = (idA) => {
-    //   // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
-    //   const alimentoEncontrado = alimentos.find(alimento => alimento.id === idA);
-      
-    //   if (alimentoEncontrado) {
-    //     setNombreAlimento(alimentoEncontrado.nombre);
-    //   }
-    // };
-
-    // useEffect(() => {
-    //     // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
-    //     const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
-    //     obtenerNombreAlimento(idAlimentoBuscado);
-    //   }, [registros]); // El useEffect se ejecutará una vez al montar el componente

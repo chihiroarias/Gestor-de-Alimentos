@@ -37,7 +37,6 @@ const AgregarRegistro = () => {
     })
       .then(r => r.json())
       .then(datos => {
-        //console.log(datos);
         dispatch(guardarAlimentos(datos.alimentos));
       })
   }, []);
@@ -108,11 +107,8 @@ const AgregarRegistro = () => {
         .then(r => r.json())
         .then(datos => {
 
-          //console.log(datos);
           obj.id = datos.idRegistro;
-          //console.log(obj);
           dispatch(guardarUnRegistro(obj));
-          //enviarDato(obj);
         })
         .catch(error => {
           alert(error.message);
@@ -171,84 +167,4 @@ const AgregarRegistro = () => {
   )
 }
 
-export default AgregarRegistro
-
-/*  
-<!-- seleccionar G , M , U DEPENDIENDO DE LA CANTIDAD DEFINIMOS ACORDE-->
-<!-- Solo hoy y ayer, no mañana-->
-
-    POST
-curl --location -g '{{calcount}}/registros.php' \
---header 'Content-Type: application/json' \
---header 'apikey: e827ae9286583d79f71670c31c992531' \
---header 'iduser: 7' \
---data '{
-    "idAlimento": 8,
-    "idUsuario": 7,
-    "cantidad": 200,
-    "fecha": "2023-09-21"
-}'
-*/
-
-
-
-/* Como estaba antes.
-
-<div className="Agregar-Registro">
-      <select ref={slcAlimentos}>
-        {alimentosLista.map(alimento => (
-          <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
-        ))}
-      </select>
-      <label htmlFor="Unidades">Cantidad: </label>
-      <input type="number" id="Unidades" ref={cantCalorias} />
-
-      <label htmlFor="fcha">Fecha</label>
-      <input type="date" id="fcha" ref={fcha} />
-      <p></p>
-
-      <input type="button" value="REGISTRAR" onClick={Registrar} />
-      <article>
-        <p>{mensaje}</p>
-      </article>
-    </div>
-*/
-
-
-
-/* DISEÑO PRELIMINAR
-
-<div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <label htmlFor="selectAlimentos" className="form-label">Seleccionar alimento:</label>
-          <select id="selectAlimentos" className="form-select mb-3" ref={slcAlimentos}>
-            {alimentosLista.map(alimento => (
-              <option key={alimento.id} value={alimento.id}>{alimento.nombre}</option>
-            ))}
-          </select>
-        </div>
-        <div className="col-md-6">
-          <label htmlFor="inputCantidad" className="form-label">Cantidad:</label>
-          <input type="number" id="inputCantidad" className="form-control mb-3" ref={cantCalorias} />
-
-          <label htmlFor="inputFecha" className="form-label">Fecha:</label>
-          <input type="date" id="inputFecha" className="form-control mb-3" ref={fcha} />
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <button type="button" className="btn btn-primary" onClick={Registrar}>REGISTRAR</button>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <article>
-            <p>{mensaje}</p>
-          </article>
-        </div>
-      </div>
-    </div>
-*/
+export default AgregarRegistro 

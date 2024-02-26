@@ -25,20 +25,7 @@ const Analisis = () => {
     </div>
   )
 }
-////Grafico cantidad alimentos////
-////Grafico de calorias por fecha////
-////Mapa de usuarios por pais////
-////Tiempo restante para definir nuevos objetivos////
+
 
 export default Analisis
 
-
-
-/*
-  GET PERSONAS POR PAIS
-curl --location -g '{{calcount}}/usuariosPorPais.php' \
---header 'Content-Type: application/json' \
---header 'apikey: ab73734f68ef0184de707643707e7950' \
---header 'iduser: 7'
-
-*/

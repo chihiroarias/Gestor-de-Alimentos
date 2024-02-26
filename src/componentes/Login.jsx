@@ -48,7 +48,6 @@ const Login = () => {
                     return response.json();
                 })
                 .then(responseData => {
-                    console.log('Usuario logueado correctamente:', responseData);
                     localStorage.setItem('IDLogueado', responseData.id);
                     localStorage.setItem('TokenLogueado', responseData.apiKey);
                     localStorage.setItem('CaloriasDiariasLogueado', responseData.caloriasDiarias);
@@ -56,7 +55,6 @@ const Login = () => {
 
                 })
                 .catch(error => {
-                    console.log(error.message);
                     setMensaje("Credenciales no válidas");
                 });
 
@@ -114,28 +112,3 @@ const Login = () => {
 }
 
 export default Login
-
-
-/* Antes
-
-<div>
-            <label> Usuario:
-                <input type="text" ref={campoUser} onChange={rastrearUser} />
-            </label>
-            <br />
-            <label> Contraseña:
-                <input type="text" ref={campoPass} onChange={rastrearPass} />
-            </label>
-            <br />
-
-            <input type="button" value="Loguearse" onClick={loginUsuario} disabled={!usuarioCampoRastreo || !passwordCampoRastreo} />
-
-            <article>
-                <h2>{mensaje}</h2>
-            </article>
-            <br />
-
-            <Link to="/Registro">¿No estas registrado?</Link>
-
-        </div>
-*/
