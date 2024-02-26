@@ -14,7 +14,6 @@ export const registrosSlice = createSlice({
         },
         guardarUnRegistro: (state, action) => {
             state.registrosLista = [...state.registrosLista, action.payload];
-            //state.registrosLista.push(action.payload);
         },
         borrarRegistro: (state, action) => {
             state.registrosLista = state.registrosLista.filter(obj => obj.id !== action.payload);

@@ -1,9 +1,7 @@
 import React from 'react'
-
 import InformeCalorico from './InformeCalorico'
 import Listado from './Listado'
 import AgregarRegistro from './AgregarRegistro'
-import Analisis from './Analisis'
 import Cabezal from './Cabezal'
 import Mapa from './Mapa'
 import NuevaMeta from './NuevaMeta'

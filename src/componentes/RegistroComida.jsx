@@ -76,18 +76,13 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
         dispatch(guardarImagenes(obtenerRutasImagenes(alimentos)))
 
         const obtenerNombreAlimento = () => {
-            // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
             const alimentoEncontrado = alimentos.find(alimento => alimento.id == idAlimento);
 
             if (alimentoEncontrado) {
                 return alimentoEncontrado.nombre;
             }
         };
-
-        // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
-        //const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
         setNombreAlimento(obtenerNombreAlimento());
-        //obtenerNombreAlimento(idAlimentoBuscado);
 
     }, [])
 
