@@ -16,13 +16,13 @@ const CaloriasDiarias = () => {
   const dispatch = useDispatch();
 
   const caloriasxid = (id) => {
-    const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+    const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
     return alimentoEncontrado ? alimentoEncontrado.calorias : 0;
   };
 
 
   const proporcionAlimentoXId = (id) => {
-    const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+    const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
 
     if (alimentoEncontrado) {
       const porcion = alimentoEncontrado.porcion;

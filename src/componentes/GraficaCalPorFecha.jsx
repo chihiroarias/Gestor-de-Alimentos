@@ -26,12 +26,12 @@ const GraficaCalPorFecha = () => {
   const [caloriasPorFecha, setCaloriasPorFecha] = useState({});
 
   const caloriasxid = (id) => {
-    const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+    const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
     return alimentoEncontrado ? alimentoEncontrado.calorias : 0;
   };
 
   const proporcionAlimentoXId = (id) => {
-    const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+    const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
 
     if (alimentoEncontrado) {
       const porcion = alimentoEncontrado.porcion;
@@ -79,7 +79,7 @@ const GraficaCalPorFecha = () => {
 
   useEffect(() => {
     calcularCaloriasPorFecha();
-  }, [registros, alimentos]);
+  }, [registros]);
 
   const options = {
     responsive: true,

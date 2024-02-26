@@ -19,16 +19,21 @@ const CaloriasTotales = () => {
 
     const caloriasxid = (id) => {
         for (let i = 0; i < alimentos.length; i++) {
-            if (alimentos[i].id === id) {
+            if (alimentos[i].id == id) {
                 console.log("Id: ", id);
+                console.log(typeof id);
+                console.log("Id alimento: ", alimentos[i].id);
+                console.log(typeof alimentos[i].id);
                 return alimentos[i].calorias;
             }
         }
         return 0; // Retorna 0 si no se encuentra el alimento con el ID dado
     };
 
+    
+
     const proporcionAlimentoXId = (id) => {
-        const alimentoEncontrado = alimentos.find(alimento => alimento.id === id);
+        const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
 
         if (alimentoEncontrado) {
             const porcion = alimentoEncontrado.porcion;
@@ -39,9 +44,13 @@ const CaloriasTotales = () => {
 
             if (proporcionMatch && proporcionMatch.length > 0) {
                 const proporcion = proporcionMatch[0];
+                console.log("Porporcion: ");
+                console.log(proporcion);
                 return proporcion.toLowerCase();
             }
         } else {
+            console.log("caí en el else");
+            console.log(alimentoEncontrado);
             return null;
         }
     };
@@ -72,19 +81,26 @@ const CaloriasTotales = () => {
 
     useEffect(() => {
         //console.log("[CaloriasTotales, useEffect] Cantidad de calorias del useSelector al principio: " + cantCalorias);
-        //console.log("Esto se esta ejecutando");
+        console.log("------------------------");
+        console.log("Esto se esta ejecutando");
+        console.log("Y la lista de alimentos es: ");
+        console.log("------------------------");
+        console.log(alimentos);
         let calTotales = 0;
         for (let i = 0; i < registros.length; i++) {
             const registro = registros[i];
             console.log("Registro: ");
             console.log(registro);
             const alimentoId = registro.idAlimento;
+            console.log("ALIMENTOID: ");
+            console.log(typeof alimentoId);
             let cantidadUnidades = 0;
 
             //Si es "u" no se va a dividir entre 100, sino sí.
             if (proporcionAlimentoXId(alimentoId) != "u") {
                 cantidadUnidades = registro.cantidad / 100;
-                //console.log(proporcionAlimentoXId(alimentoId));
+                console.log("Proporcion por id: " + alimentoId);
+                console.log(proporcionAlimentoXId(alimentoId));
             }
             else {
                 cantidadUnidades = registro.cantidad;

@@ -23,6 +23,7 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
     const imag = useSelector(state => state.imgs.imagenes);
     
     const [imagen, setImagen] = useState("");
+    const [nombreAlimento, setNombreAlimento] = useState("");
 
     //Esto es para llamarlo en el jsx directamente en el src, pero ahora estoy usando el state
     // const obtenerRutaImagen = (idAlimento) => {
@@ -87,10 +88,25 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
       return rutasImagenes;
     };
     dispatch(guardarImagenes(obtenerRutasImagenes(alimentos)))
+
+    const obtenerNombreAlimento = () => {
+        // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
+        const alimentoEncontrado = alimentos.find(alimento => alimento.id == idAlimento);
+        
+        if (alimentoEncontrado) {
+            return alimentoEncontrado.nombre;
+        }
+      };
+  
+      // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
+      //const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
+      setNombreAlimento(obtenerNombreAlimento());
+      //obtenerNombreAlimento(idAlimentoBuscado);
+    
   }, [])
 
   useEffect(() => {
-        const imagen = imag.find(imagen => imagen.idAlimento === idAlimento);
+        const imagen = imag.find(imagen => imagen.idAlimento == idAlimento);
         if(imagen != undefined){
             setImagen(imagen.rutaImagen);
         }
@@ -100,7 +116,7 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={imagen} alt={`Imagen de alimento ${idAlimento}`} style={{ marginRight: '10px' }} />
             <p>
-                Id: {id} | Alimento: {idAlimento} | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
+                Id: {id} | Alimento: {nombreAlimento} (ID{idAlimento}) | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
                 <button onClick={eliminarRegistro}>X</button>
             </p>
         </div>
