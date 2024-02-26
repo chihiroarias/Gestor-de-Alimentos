@@ -18,7 +18,7 @@ const CaloriasTotales = () => {
         return 0; // Retorna 0 si no se encuentra el alimento con el ID dado
     };
 
-    
+
 
     const proporcionAlimentoXId = (id) => {
         const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);

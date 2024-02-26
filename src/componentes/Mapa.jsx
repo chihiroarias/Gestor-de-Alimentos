@@ -62,7 +62,7 @@ const Mapa = () => {
                 />
                 {paises.map(coord => {
                     const paisInfo = cantPorPais.find(pais => pais.id === coord.id);
-                    const cantidadPersonas = paisInfo ? paisInfo.cantidadDeUsuarios: 0;
+                    const cantidadPersonas = paisInfo ? paisInfo.cantidadDeUsuarios : 0;
 
                     return (
                         <Marker key={coord.id} position={[coord.latitude, coord.longitude]}>

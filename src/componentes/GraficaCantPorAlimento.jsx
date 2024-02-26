@@ -9,8 +9,11 @@ const GraficaCantPorAlimento = () => {
     const registros = useSelector(state => state.registros.registrosLista);
     const alimentos = useSelector(state => state.alimentos.listAlimentos);
 
+
     // State para almacenar los datos de la gráfica
     const [datosGrafica, setDatosGrafica] = useState([]);
+
+
 
     // Función para calcular la cantidad consumida de cada alimento
     useEffect(() => {
@@ -32,6 +35,16 @@ const GraficaCantPorAlimento = () => {
     }, [registros]);
 
 
+    const obtenerNombreAlimento = (id) => {
+        // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
+        const alimentoEncontrado = alimentos.find(alimento => alimento.id == id);
+
+        if (alimentoEncontrado) {
+            return alimentoEncontrado.nombre;
+        }
+    };
+
+
     // Configuración de los colores de fondo y borde
     const backgroundColor = [
         'rgba(255, 99, 132, 0.2)',
@@ -50,7 +63,7 @@ const GraficaCantPorAlimento = () => {
         'rgba(255, 159, 64, 1)',
     ];
 
-    const labels = datosGrafica.map(dato => `Alimento ID: ${dato.idAlimento}`);
+    const labels = datosGrafica.map(dato => `Alimento: ${obtenerNombreAlimento(dato.idAlimento)}`);
     const data = datosGrafica.map(dato => dato.CantConsumido);
 
     const dataChart = {

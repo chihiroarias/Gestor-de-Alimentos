@@ -8,43 +8,29 @@ import { guardarImagenes } from "../features/imagenesSlice";
 const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
 
     const navigate = useNavigate();
-    useEffect(()=> {
-        if(localStorage.getItem("IDLogueado") === null){
+    useEffect(() => {
+        if (localStorage.getItem("IDLogueado") === null) {
             navigate("/");
         }
     })
 
-
-    // const urlImagen = "https://calcount.develotion.com/imgs/";
-
-    
     const registros = useSelector(state => state.registros.registrosLista);
     const alimentos = useSelector(state => state.alimentos.listAlimentos);
     const imag = useSelector(state => state.imgs.imagenes);
-    
+
     const [imagen, setImagen] = useState("");
     const [nombreAlimento, setNombreAlimento] = useState("");
 
-    //Esto es para llamarlo en el jsx directamente en el src, pero ahora estoy usando el state
-    // const obtenerRutaImagen = (idAlimento) => {
-    //     console.log("Imag: ");
-    //     console.log(imag);
-    //     const imagen = imag.find(imagen => imagen.idAlimento === idAlimento);
-    //     console.log("IdAlimento: " + idAlimento);
-    //     console.log("Imagen: ");
-    //     console.log(imagen);
-    //     return imagen ? imagen.rutaImagen : '';
-    // };
 
     const url = 'https://calcount.develotion.com';
     const iduser = localStorage.getItem("IDLogueado");
     const tok = localStorage.getItem("TokenLogueado");
-    
+
     const dispatch = useDispatch();
 
     const dispararDispatch = (datos) => {
         dispatch(borrarRegistro(datos));
-      };
+    };
 
     const eliminarRegistro = () => {
         console.log("ID REGISTRO: " + id);
@@ -78,45 +64,45 @@ const RegistroComida = ({ id, idAlimento, idUsuario, cantidad, fecha }) => {
 
 
     useEffect(() => {
-    const obtenerRutasImagenes = (AllAlimentos) => {
-      const rutasImagenes = AllAlimentos.map(alimento => {
-          const idImagen = alimento.imagen;
-          const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
-          return { idAlimento: alimento.id, rutaImagen: rutaImagen };
-      });
-  
-      return rutasImagenes;
-    };
-    dispatch(guardarImagenes(obtenerRutasImagenes(alimentos)))
+        const obtenerRutasImagenes = (AllAlimentos) => {
+            const rutasImagenes = AllAlimentos.map(alimento => {
+                const idImagen = alimento.imagen;
+                const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
+                return { idAlimento: alimento.id, rutaImagen: rutaImagen };
+            });
 
-    const obtenerNombreAlimento = () => {
-        // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
-        const alimentoEncontrado = alimentos.find(alimento => alimento.id == idAlimento);
-        
-        if (alimentoEncontrado) {
-            return alimentoEncontrado.nombre;
-        }
-      };
-  
-      // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
-      //const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
-      setNombreAlimento(obtenerNombreAlimento());
-      //obtenerNombreAlimento(idAlimentoBuscado);
-    
-  }, [])
+            return rutasImagenes;
+        };
+        dispatch(guardarImagenes(obtenerRutasImagenes(alimentos)))
 
-  useEffect(() => {
+        const obtenerNombreAlimento = () => {
+            // Suponiendo que alimentos es un array de objetos con una estructura similar a { id, nombre }
+            const alimentoEncontrado = alimentos.find(alimento => alimento.id == idAlimento);
+
+            if (alimentoEncontrado) {
+                return alimentoEncontrado.nombre;
+            }
+        };
+
+        // Suponiendo que tienes una lista de alimentos y un ID de alimento específico
+        //const idAlimentoBuscado = idAlimento; // ID del alimento que deseas buscar
+        setNombreAlimento(obtenerNombreAlimento());
+        //obtenerNombreAlimento(idAlimentoBuscado);
+
+    }, [])
+
+    useEffect(() => {
         const imagen = imag.find(imagen => imagen.idAlimento == idAlimento);
-        if(imagen != undefined){
+        if (imagen != undefined) {
             setImagen(imagen.rutaImagen);
         }
-  }, [registros])
+    }, [registros])
 
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={imagen} alt={`Imagen de alimento ${idAlimento}`} style={{ marginRight: '10px' }} />
             <p>
-               Id: {id} | Alimento: {nombreAlimento} (ID{idAlimento}) | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
+                Id: {id} | Alimento: {nombreAlimento} (ID{idAlimento}) | Usuario: {idUsuario} | Cantidad: {cantidad} | Fecha: {fecha}
                 <button onClick={eliminarRegistro}>X</button>
             </p>
         </div>

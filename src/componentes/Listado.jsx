@@ -43,52 +43,8 @@ const Listado = () => {
     }
 
 
-
-    // console.log("Imagenes antes: ");
-    // console.log(imag);
-    // const obtenerRutasImagenes = (AllAlimentos) => {
-    //   console.log("alimentos:");
-    //   console.log(AllAlimentos);
-
-
-    //   const rutasImagenes = AllAlimentos.map(alimento => {
-    //       const idImagen = alimento.imagen; // Suponiendo que la propiedad que contiene el ID de la imagen se llama "imagen"
-    //       const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
-    //       return { idAlimento: alimento.id, rutaImagen: rutaImagen };
-    //   });
-
-    //   console.log("lo que contiene rutasImagenes: ");
-    //   console.log(rutasImagenes);
-    //   return rutasImagenes;
-    // };
-
-    // dispatcher(guardarImagenes(obtenerRutasImagenes(alimentos)))
-    // console.log("Imagenes despues: ");
-    // console.log(imag);
-
-
-
-
   }, [])
 
-
-  // useEffect(() => {
-  //   console.log("Imagenes antes: ");
-  //   console.log(imag);
-  //   const obtenerRutasImagenes = (AllAlimentos) => {
-  //     const rutasImagenes = AllAlimentos.map(alimento => {
-  //         const idImagen = alimento.imagen; // Suponiendo que la propiedad que contiene el ID de la imagen se llama "imagen"
-  //         const rutaImagen = `https://calcount.develotion.com/imgs/${idImagen}.png`;
-  //         return { idAlimento: alimento.id, rutaImagen: rutaImagen };
-  //     });
-
-  //     return rutasImagenes;
-  //   };
-
-  //   dispatch(guardarImagenes(obtenerRutasImagenes(alimentos)))
-  //   console.log("Imagenes despues: ");
-  //   console.log(imag);
-  // }, [])
 
 
   useEffect(() => {
